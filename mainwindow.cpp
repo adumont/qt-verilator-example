@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_timer = new QTimer(this);
     QObject::connect(m_timer, SIGNAL(timeout()), this, SLOT(UpdateTime()));
     m_timer->start(1000);
+    ui->lcdNumber->display(counter);
 
 
 }
@@ -25,6 +26,6 @@ MainWindow::~MainWindow()
 void MainWindow::UpdateTime()
 {
     ui->label->setText(QTime::currentTime().toString("hh:mm:ss"));
-    ui->lcdNumber->display(counter++);
+    ui->lcdNumber->display(++counter);
 
 }
