@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "Vtop.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -18,10 +20,16 @@ public:
 private slots:
     void UpdateTime();
 
+    void on_pbA_toggled(bool checked);
+
+    void on_pbB_toggled(bool checked);
+
 private:
     Ui::MainWindow *ui;
     QTimer *m_timer;
-    int counter = 0;
+    int counter;
+    Vtop * top;
+    void updateUI();
 };
 
 #endif // MAINWINDOW_H

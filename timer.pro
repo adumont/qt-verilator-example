@@ -12,6 +12,11 @@ TARGET = timer
 TEMPLATE = app
 
 
+INCLUDEPATH += obj_dir
+INCLUDEPATH += /home/adumont/toolchain/share/verilator/include
+
+LIBS += ../timer/obj_dir/*.o
+
 SOURCES += main.cpp\
         mainwindow.cpp
 
