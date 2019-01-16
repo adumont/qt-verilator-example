@@ -1,13 +1,24 @@
-timer: timer.mk obj_dir/verilated.o obj_dir/Vtop__ALLcls.o obj_dir/Vtop__ALLsup.o
-	make -f timer.mk
+PROJECT := $(strip $(notdir $(patsubst %/,%,$(CURDIR))))
 
-obj_dir/verilated.o  obj_dir/Vtop__ALLcls.o  obj_dir/Vtop__ALLsup.o: top.v
-	verilator -Wall -cc top.v 
-	make -C obj_dir/ -f Vtop.mk Vtop__ALL.a verilated.o
+-include Design.mk
 
-timer.mk: timer.pro
-	qmake timer.pro -r -spec linux-g++-64 -o timer.mk
+# TOP defaults to "top", can overwrite in Design.mk
+TOP ?= top
+
+.DEFAULT_GOAL := $(PROJECT)
+
+$(PROJECT): $(PROJECT).mk obj_dir/verilated.o obj_dir/V$(TOP)__ALLcls.o obj_dir/V$(TOP)__ALLsup.o
+	make -f $(PROJECT).mk
+
+obj_dir/verilated.o  obj_dir/V$(TOP)__ALLcls.o  obj_dir/V$(TOP)__ALLsup.o: $(TOP).v
+	verilator -Wall -cc $(TOP).v 
+	make -C obj_dir/ -f V$(TOP).mk V$(TOP)__ALL.a verilated.o
+
+$(PROJECT).mk: $(PROJECT).pro
+	qmake $(PROJECT).pro -r -spec linux-g++-64 -o $(PROJECT).mk
 
 clean:
 	rm -rf obj_dir/
-	rm -f timer.mk timer *.o
+	rm -f $(PROJECT).mk $(PROJECT) *.o moc_*.cpp moc_*.h qrc_*.cpp ui_*.h
+
+.PHONY: clean
