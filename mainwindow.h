@@ -18,8 +18,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void UpdateTime();
-
     void on_pbA_toggled(bool checked);
 
     void on_pbB_toggled(bool checked);
