@@ -7,7 +7,7 @@ TOP ?= top
 
 .DEFAULT_GOAL := $(PROJECT)
 
-$(PROJECT): $(PROJECT).mk obj_dir/verilated.o obj_dir/V$(TOP)__ALLcls.o obj_dir/V$(TOP)__ALLsup.o
+$(PROJECT): $(PROJECT).mk obj_dir/verilated.o obj_dir/V$(TOP)__ALLcls.o obj_dir/V$(TOP)__ALLsup.o .FORCE
 	make -f $(PROJECT).mk
 
 obj_dir/verilated.o  obj_dir/V$(TOP)__ALLcls.o  obj_dir/V$(TOP)__ALLsup.o: $(TOP).v
@@ -21,4 +21,4 @@ clean:
 	rm -rf obj_dir/
 	rm -f $(PROJECT).mk $(PROJECT) *.o moc_*.cpp moc_*.h qrc_*.cpp ui_*.h
 
-.PHONY: clean
+.PHONY: clean .FORCE
