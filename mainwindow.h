@@ -29,6 +29,9 @@ private:
     QTimer *m_timer;
     int counter;
     Vtop * top;
+    QPixmap led_on;
+    QPixmap led_off;
+
     void updateUI();
 };
 

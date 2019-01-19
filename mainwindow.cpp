@@ -18,6 +18,10 @@ MainWindow::MainWindow(QWidget *parent) :
     counter = 0;
     ui->lcdNumber->display(counter);
 
+    led_on = QPixmap(":/assets/leds/assets/leds/red.svg");
+    led_off = QPixmap(":/assets/leds/assets/leds/red_off.svg");
+    ui->ledC->setPixmap(led_off);
+
     top = new Vtop;
     updateUI();
 }
@@ -31,6 +35,7 @@ void MainWindow::UpdateTime()
 {
     ui->label->setText(QTime::currentTime().toString("hh:mm:ss"));
     ui->lcdNumber->display(++counter);
+    ui->clk->setPixmap( (counter%2) ? led_on : led_off );
 }
 
 void MainWindow::on_pbA_toggled(bool checked)
@@ -49,4 +54,12 @@ void MainWindow::updateUI()
 {
     top->eval();
     ui->lcdC->display(top->C);
+
+    if(top->C) {
+        ui->lcdC->setStyleSheet("background-color: rgb(170, 255, 127);");
+        ui->ledC->setPixmap(led_on);
+    } else {
+        ui->lcdC->setStyleSheet("");
+        ui->ledC->setPixmap(led_off);
+    }
 }
