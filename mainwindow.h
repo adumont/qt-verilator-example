@@ -27,6 +27,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QTimer *m_timer;
+    bool clk = true;
     int counter;
     Vtop * top;
     QPixmap led_on;

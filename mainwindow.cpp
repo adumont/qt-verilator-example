@@ -14,13 +14,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_timer = new QTimer(this);
     QObject::connect(m_timer, SIGNAL(timeout()), this, SLOT(UpdateTime()));
-    m_timer->start(1000);
+    m_timer->start(500);
     counter = 0;
     ui->lcdNumber->display(counter);
 
     led_on = QPixmap(":/assets/leds/assets/leds/red.svg");
     led_off = QPixmap(":/assets/leds/assets/leds/red_off.svg");
     ui->ledC->setPixmap(led_off);
+
+    ui->ledC_2->setColor(0);
+    ui->ledC_2->setOn();
 
     top = new Vtop;
     updateUI();
@@ -33,9 +36,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::UpdateTime()
 {
+    clk = ! clk;
+    if(clk)
+        ui->lcdNumber->display(++counter);
+
     ui->label->setText(QTime::currentTime().toString("hh:mm:ss"));
-    ui->lcdNumber->display(++counter);
-    ui->clk->setPixmap( (counter%2) ? led_on : led_off );
+
+    ui->clk->setPixmap( clk ? led_on : led_off );
 }
 
 void MainWindow::on_pbA_toggled(bool checked)
@@ -62,4 +69,5 @@ void MainWindow::updateUI()
         ui->lcdC->setStyleSheet("");
         ui->ledC->setPixmap(led_off);
     }
+    ui->ledC_2->setState( top->B ); // test
 }

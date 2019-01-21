@@ -198,6 +198,25 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="MLed" name="ledC_2">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>220</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="assets.qrc">:/assets/leds/assets/leds/white.svg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -220,6 +239,13 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>MLed</class>
+   <extends>QLabel</extends>
+   <header>mled.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="assets.qrc"/>
  </resources>

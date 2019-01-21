@@ -18,9 +18,11 @@ INCLUDEPATH += /home/adumont/toolchain/share/verilator/include
 LIBS += ../timer/obj_dir/*.o
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    mled.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    mled.h
 
 FORMS    += mainwindow.ui
 
