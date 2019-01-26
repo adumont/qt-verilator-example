@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QTableWidget>
 #include "Vtop.h"
 
 namespace Ui {
@@ -32,6 +32,10 @@ private:
     Vtop * top;
     QPixmap led_on;
     QPixmap led_off;
+
+    QTableWidget* m_pTableWidget;
+    QStringList m_TableHeader;
+
 
     void updateUI();
 };
