@@ -15,6 +15,8 @@ TEMPLATE = app
 INCLUDEPATH += obj_dir
 INCLUDEPATH += /home/adumont/toolchain/share/verilator/include
 
+CONFIG += c++11
+
 LIBS += ../timer/obj_dir/*.o
 
 SOURCES += main.cpp\
